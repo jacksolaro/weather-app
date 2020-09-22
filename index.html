@@ -1,16 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <header class="jumbotron text-center mb-0">
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main class="container-fluid p-0">
+        <div class="row m-0 w-100">
+            <div class="col-md-4 p-2" id="search-aside">
+                <!-- Search Form -->
+                <form>
+                    <div class="form-group p-2">
+                        <label for="search-city">Search for a City:</label>
+                        <br>
+                        <input type="text" class="d-inline" id="search-city" name="search-city">
+                        <button class="btn btn-primary d-inline" id="search-button">Search</button>
+                    </div>
+                </form>
+                <!-- Search History -->
+                <div class="" id="search-history-container">
+                    <div class="search-history-div border border-secondary p-3">
+                        Sample City 1
+                    </div>
+                    <div class="search-history-div border border-secondary p-3">
+                        Sample City 2
+                    </div>
+                    <div class="search-history-div border border-secondary p-3">
+                        Sample City 3
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 p-2" id="results-content">
+                <!-- Current City Info -->
+                <div class="p-2 border border-dark">
+                    <h2>Atlanta (DATE) (ICON)</h2>
+                    <p>Temperature: <span>##</span>F</p>
+                    <p>Humidity: <span>##</span>%</p>
+                    <p>Wind Speed: <span>##</span>MPH</p>
+                    <p>UV Index <span>##</span></p>
+                </div>
+
+                <!-- Current City 5 Day Forecast -->
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
-
-
