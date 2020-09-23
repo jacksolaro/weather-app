@@ -1,13 +1,20 @@
 // Variables
+
+// Search Column Variables
 var searchCityInputEl = $("#search-city");
 var searchBtn = $("#search-button")
+var searchHistoryContainer = $("#search-history-container")
 
+
+// Current Weather Card Variables
 var cardCity = $("#card-city");
 var cardTempF = $("#card-tempF");
 var cardHumidity = $("#card-humidity");
 var cardWind = $("#card-wind");
 var cardUV = $("#card-uv");
 var currentWeatherContainer = $("#current-weather-container")
+
+// 5 Day Forecast Variables
 var forecastContainer = $("#forecast-container")
 
 var searchHistory = [];
@@ -21,10 +28,14 @@ searchBtn.on("click", function(e){
     e.preventDefault();
     currentWeatherContainer.removeClass("d-none")
     var searchCityVal = searchCityInputEl.val();
+
+    // addCityToHistory(cityInput);
+
     var inputLat;
     var inputLon;
 
     searchHistory.push(searchCityVal);
+    renderSearchHistory();
 
     // update search history div (for loop)
     
@@ -67,20 +78,54 @@ searchBtn.on("click", function(e){
 
 })
 
+function renderSearchHistory() {
+    searchHistoryContainer.empty();
+    
+    jQuery.each(searchHistory,function(index, value){
+        var newSearchDiv = $("<div>", {
+            "text": value,
+            "class": `search-history-div border border-secondary p-3`
+        })
+        searchHistoryContainer.append(newSearchDiv);
+    })
+
+}
+
+// generate the 5 day forecast div and content
 function generateForecast(arr) {
+
+    // remove existing content in forecast div
     forecastContainer.empty();
 
+    // create forecast header "5 Day Forecast"
+    var forecastHeaderDiv = $("<div>", {
+        "class": `col-md-12`
+    })
+    var forecastHeader = $("<h2>", {
+        "text": `5 Day Forecast: `
+    })
+
+    forecastHeaderDiv.append(forecastHeader);
+    forecastContainer.append(forecastHeaderDiv);
+
+
+    // generate the 5 day forecast cards with details like temp and humidity
     for (let index = 0; index < 5; index++) {
         var forecastCard = $("<div>", {
             "class": `col-md-2 forecast-card`
         })
+        var forecastDate = $("<p>")
         var forecastTempF = $("<p>");
         var forecastHumidity = $("<p>");
+        var forecastIcon = $("<img>", {
+            "src": `http://openweathermap.org/img/wn/${arr[index+1].weather[0].icon}@2x.png`
+        })
 
+        forecastDate.text(moment().add(index+1,'days').format("L"));
         forecastTempF.text(`Temp: ${((arr[index+1].temp.day* 9/5) - 459.67).toFixed(2)}F`);
         forecastHumidity.text(`Humidity: ${arr[index+1].humidity}%`);
 
-        forecastCard.append(forecastTempF,forecastHumidity);
+        forecastCard.append(forecastDate,forecastIcon,forecastTempF,forecastHumidity);
         forecastContainer.append(forecastCard);       
         console.log(index) 
     }
