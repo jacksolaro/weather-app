@@ -67,6 +67,7 @@ searchBtn.on("click", function(e){
             cardHumidity.text(humidity);
             cardWind.text(windSpeed);
             cardUV.text(uvIndex);
+            cardUV.css("background-color",uvConditionHighlight(uvIndex));
 
             var forecastArray = response.daily;
 
@@ -78,13 +79,28 @@ searchBtn.on("click", function(e){
 
 })
 
+// Returns color formatting for UV Index based on UV Index Scale
+function uvConditionHighlight(uvIndex) {
+    switch (true) {
+        case uvIndex <= 2:
+            return "green";
+        case uvIndex <= 5:
+            return "yellow";
+        case uvIndex <= 7:
+            return "orange";
+        case uvIndex > 7:
+            return "red";
+    }
+}
+
+// Render the search history of past searched cities
 function renderSearchHistory() {
     searchHistoryContainer.empty();
-    
+
     jQuery.each(searchHistory,function(index, value){
         var newSearchDiv = $("<div>", {
             "text": value,
-            "class": `search-history-div border border-secondary p-3`
+            "class": `search-history-div border border-secondary p-3 bg-light`,
         })
         searchHistoryContainer.append(newSearchDiv);
     })
